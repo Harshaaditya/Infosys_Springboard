@@ -80,7 +80,6 @@ chat_session = model.start_chat(
 )
 
 def generate_response(user_input):
-    """Generate response from the AI model based on user input."""
     try:
         response = chat_session.send_message(user_input)
         return response.text

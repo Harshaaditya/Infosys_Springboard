@@ -12,11 +12,9 @@ SILENCE_THRESHOLD = 500
 SILENCE_DURATION = 2 
 
 def is_silent(data_chunk):
-    """Check if the chunk of audio is silent based on a threshold."""
     return np.max(np.abs(data_chunk)) < SILENCE_THRESHOLD
 
 def record_audio():
-    """Record audio from the microphone until the user stops talking."""
     p = pyaudio.PyAudio()
     stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
 
@@ -58,7 +56,6 @@ def record_audio():
 
 
 def transcribe_audio(file_path):
-    """Transcribe the recorded audio using the Whisper model."""
     model = whisper.load_model("small")
     print("Transcribing...")
     result = model.transcribe(file_path)

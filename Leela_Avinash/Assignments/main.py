@@ -1,5 +1,6 @@
 from speech_to_text import record_audio, transcribe_audio
 from generate_response import generate_response
+from text_to_speech import text_to_speech
 
 def main():
     print("\n🛒 **Welcome to the Real-Time AI Sales Assistant!** 🛒")
@@ -19,6 +20,8 @@ def main():
         
         ai_response = generate_response(transcribed_text)
         print("\nAI Sales Assistant:", ai_response, "\n")
+
+        text_to_speech(ai_response)
 
 if __name__ == "__main__":
     main()
