@@ -15,7 +15,9 @@ def main():
         print(f"Transcribed Text: {transcribed_text}")
 
         if "exit" in transcribed_text.lower():
-            print("Goodbye! Have a great day! 👋")
+            transcribed_text = "Goodbye! Have a great day! 👋"
+            print(transcribed_text)
+            text_to_speech(transcribed_text)
             break
         
         ai_response = generate_response(transcribed_text)

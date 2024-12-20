@@ -1,5 +1,6 @@
 import base64
 import wave
+import pyaudio
 from googleapiclient.discovery import build
 import googleapiclient.errors
 from dotenv import load_dotenv
@@ -26,9 +27,10 @@ def synthesize_speech(text, client, output_file=OUTPUT_FILE, language_code="en-U
             "ssmlGender": ssml_gender,
         },
         "audioConfig": {
-            "audioEncoding": "MP3",
+            "audioEncoding": "LINEAR16",
+            "sampleRateHertz": 16000,
             "speakingRate": 0.9,  
-            "pitch": 2.0      
+            "pitch": 3.0  
         },
     }
 
@@ -50,6 +52,42 @@ def synthesize_speech(text, client, output_file=OUTPUT_FILE, language_code="en-U
     except googleapiclient.errors.HttpError as err:
         print(f"Error during synthesis: {err}")
 
+def play_audio(file_path):
+    """Play the saved audio file."""
+    print("Playing audio...")
+    try:
+        wf = wave.open(file_path, "rb")
+    except FileNotFoundError:
+        print(f"Error: File {file_path} not found.")
+        return
+    except wave.Error as e:
+        print(f"Error reading audio file: {e}")
+        return
+
+    chunk = 1024
+    p = pyaudio.PyAudio()
+
+    try:
+        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                        channels=wf.getnchannels(),
+                        rate=wf.getframerate(),
+                        output=True)
+
+        data = wf.readframes(chunk)
+        while data:
+            stream.write(data)
+            data = wf.readframes(chunk)
+
+        stream.stop_stream()
+        stream.close()
+        print("Audio playback finished.")
+    except Exception as e:
+        print(f"Error during audio playback: {e}")
+    finally:
+        wf.close()
+        p.terminate()
+
 def text_to_speech(text):
     tts_client = get_text_to_speech_client()
     synthesize_speech(text, tts_client)
+    play_audio(OUTPUT_FILE)
