@@ -1,0 +1,64 @@
+Introduction to Large Language Models (LLMs)
+Large Language Models (LLMs) are a subset of artificial intelligence (AI) models designed to understand, generate, and manipulate human language. They are based on deep learning architectures, especially transformer networks, which are capable of processing vast amounts of text data. LLMs have revolutionized natural language processing (NLP) by performing tasks such as language translation, text generation, sentiment analysis, and more, with remarkable proficiency.
+
+
+Types of Large Language Models (LLMs)
+LLMs can be categorized based on their architecture, training data, and capabilities. Some common types include:
+Generative Models: These models are trained to generate new text based on a given input. Examples include OpenAI s GPT series (GPT-2, GPT-3, GPT-4), which generate coherent and contextually relevant text.
+Masked Language Models (MLMs): These models predict missing words in a sentence by masking certain words during training. BERT (Bidirectional Encoder Representations from Transformers) is a well-known example of an MLM.
+Autoregressive Models: These models predict the next word in a sequence, based on the previous words. GPT models are a type of autoregressive model.
+Encoder-Decoder Models: These models use two separate components: an encoder to understand the input sequence and a decoder to generate the output. Examples include T5 (Text-to-Text Transfer Transformer) and BART.
+
+GPT-2 Model: A Brief Description
+GPT-2 (Generative Pre-trained Transformer 2) is a prominent example of a generative autoregressive language model developed by OpenAI. It is an extension of the original GPT architecture, designed to generate coherent, high-quality text across various domains.
+Architecture: GPT-2 uses a transformer-based architecture, with a large number of layers (12 layers in the smallest model) and self-attention mechanisms to process input text. It uses unsupervised learning, where it is pre-trained on a massive dataset of text from the internet and then fine-tuned for specific tasks.
+Training: GPT-2 was trained on a dataset containing 40GB of text, scraped from a wide range of sources. This large-scale training enables GPT-2 to generate human-like text based on prompts, making it versatile for tasks such as summarization, translation, and creative writing.
+Capabilities: GPT-2 has demonstrated the ability to generate text that is contextually relevant, fluent, and often indistinguishable from human writing. However, it is still limited in understanding deeper meanings or producing text with perfect factual accuracy.
+Applications: GPT-2 is widely used in chatbot development, content generation, and creative writing tools. Despite being less advanced than its successors (GPT-3 and GPT-4), GPT-2 remains highly useful for many applications due to its efficiency and robustness.
+
+Code:
+Task 1: Implement LLM model for text Generation
+Task 2: Implement LLM model with Voice
+Task 3: Implement LLM model with Voice and prompt
+
+Training code:
+The provided code demonstrates the process of fine-tuning a pre-trained GPT-2 model using a subset of the WikiText-2 dataset. It includes essential steps such as data loading, tokenization, training with mixed-precision, and saving the model after each epoch.
+
+Key Components:
+1. Model and Tokenizer
+2. Checkpointing
+3. Dataset 
+4. Performance
+5.  Training Loop
+
+Task 1:
+The code demonstrates how to load a fine-tuned GPT-2 model and tokenizer, accept an input prompt from the user, generate text based on that prompt, and then process the output. The generation process is adjusted with specific parameters to control the output s creativity and relevance.
+
+Key Components:
+1. Model and Tokenizer Loading
+2. Device Setup
+3. Prompt Input
+4. Text Generation
+5. Post-Processing
+
+Task 2:
+The code demonstrates a voice-based interaction with a fine-tuned GPT-2 model. It allows users to speak a prompt, which is converted into text, and generates a response from the model. The generated text is then converted to speech and played back to the user.
+
+Key Components:
+1. Model Loading
+2. Speech-to-Text
+3. Text Generation
+4. Text-to-Speech
+(The system listens for user speech, converts it to text, generates a response with GPT-2, and converts the response back to speech.The loop continues until the user says "finish," at which point the program ends.)
+
+Task 3:
+The code creates an interactive voice-based system designed for sales-related question and answer generation. It listens to user questions, processes them using a fine-tuned GPT-2 model, and provides answers in spoken form. This system allows for continuous interaction, making it ideal for real-time voice-based sales support.
+
+Key Components:
+1. Model and Tokenizer Loading
+2. Speech-to-Text
+3. Sales-Oriented Text Generation
+4. Text-to-Speech
+5. Main Function
+(The system continuously listens for user input using speech recognition.Once a question is detected, it is passed to the GPT-2 model to generate a sales-related answer.The generated answer is then converted to speech and played back to the user.This loop continues until the user says "finish" to exit the program.)
+
