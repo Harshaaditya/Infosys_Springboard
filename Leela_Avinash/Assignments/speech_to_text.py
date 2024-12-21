@@ -54,7 +54,6 @@ def record_audio():
 
     return filename
 
-
 def transcribe_audio(file_path):
     model = whisper.load_model("small")
     print("Transcribing...")

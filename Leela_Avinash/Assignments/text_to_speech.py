@@ -29,7 +29,7 @@ def synthesize_speech(text, client, output_file=OUTPUT_FILE, language_code="en-U
         "audioConfig": {
             "audioEncoding": "LINEAR16",
             "sampleRateHertz": 16000,
-            "speakingRate": 0.9,  
+            "speakingRate": 1.0,  
             "pitch": 3.0  
         },
     }
@@ -53,7 +53,6 @@ def synthesize_speech(text, client, output_file=OUTPUT_FILE, language_code="en-U
         print(f"Error during synthesis: {err}")
 
 def play_audio(file_path):
-    """Play the saved audio file."""
     print("Playing audio...")
     try:
         wf = wave.open(file_path, "rb")
