@@ -1,0 +1,31 @@
+Code:
+Task 1: Implement LLM model for text Generation
+Task 2: Implement LLM model with Voice
+Task 3: Implement LLM model with Voice and prompt
+
+text.py: Text-based Chatbot
+
+This script implements a simple text-based chatbot that interacts with users by processing their input using Google s generative AI model.
+It uses google.generativeai to configure the API key and model, and sends input text to the AI model to generate a response.
+The chatbot continues to interact with the user in a loop until they type "exit" or "quit".
+It uses a basic configuration for the AI s response generation like temperature, top-p, and max output tokens.
+
+voice.py: Voice Interaction Chatbot
+
+This code enhances the first one by adding voice recognition and speech synthesis.
+The speech_recognition library is used to convert user speech into text, and pyttsx3 is used for text-to-speech synthesis, allowing the AI to speak back to the user.
+Similar to the first code, it interacts with the generative AI model for responses.
+The loop continues until the user says "exit" or "quit", and responses are spoken out loud.
+
+Salesai.py: Voice-based Sales Assistant
+
+This builds on the previous code with the added functionality of simulating an AI-driven sales assistant.
+The AI responds to customer inquiries about products with a focus on sales, product benefits, and providing actionable suggestions (e.g., discounts, scheduling demos).
+It maintains a history of the conversation to make the responses contextually aware and persuasive.
+The chatbot also generates specific sales negotiation tips based on user input (e.g., price, features, contract). It continuously listens to the user, processes the input, and provides both answers and suggestions.
+The script uses speech_recognition for listening to audio input and pyttsx3 for speaking back the assistant’s response.
+
+Key Technologies Used:
+Google Generative AI: For natural language processing and generation of responses.
+Speech Recognition (speech_recognition): Converts spoken language into text.
+Text-to-Speech (pyttsx3): Converts text into spoken output.
