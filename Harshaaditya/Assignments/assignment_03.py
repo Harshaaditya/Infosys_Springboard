@@ -15,7 +15,6 @@ generation_config = {
   "max_output_tokens": 8192,
   "response_mime_type": "text/plain",
 }
-
 model = genai.GenerativeModel(
   model_name="gemini-2.0-flash-exp",
   generation_config=generation_config,
@@ -37,7 +36,9 @@ chat_session = model.start_chat(
     },
   ]
 )
-prompt = input("User: ")
-response = chat_session.send_message(prompt)
 
-print(response.text)
+
+def text_response(text):
+    response= chat_session.send_message(text)
+    print(response.text)
+    return response.text

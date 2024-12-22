@@ -1,6 +1,8 @@
 import os
+from dotenv import load_dotenv
 import google.generativeai as Gen_Ai
-Gen_Ai.configure(api_key=os.environ["Gemini_API"])
+load_dotenv ()
+Gen_Ai.configure(api_key=os.getenv("GEMINI_API"))
 generation_config = {
     "temperature": 0.9, 
     "top_p": 0.95,

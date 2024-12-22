@@ -19,10 +19,10 @@ RATE = 16000
 CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-SILENCE_THRESHOLD = 500  
-SILENCE_DURATION = 4  
+SILENCE_THRESHOLD = 500
+SILENCE_DURATION = 4
 FILENAME = "temp_recording.wav"
-TTS_OUTPUT_FILE = "output_audio.mp3"  
+TTS_OUTPUT_FILE = "output_audio.mp3"
 
 def get_speech_client():
     return build("speech", "v1", developerKey=api_key)
@@ -111,25 +111,89 @@ def transcribe_audio_google(file_path, speech_client):
         print(f"Error during transcription: {err}")
         return ""
 
-def text_to_speech(text, output_file):
-    if not text.strip():
-        print("No text to convert to speech.")
-        return
+OUTPUT_FILE = "output_audio.wav"
 
-    print("Converting text to speech...")
-    tts = gTTS(text=text, lang="en")
-    tts.save(output_file)
-    print(f"Speech saved to {output_file}")
-    play_audio(output_file)
+def get_text_to_speech_client():
+    return build("texttospeech", "v1", developerKey=api_key)
+
+def synthesize_speech(text, client, output_file=OUTPUT_FILE, language_code="en-US", ssml_gender="FEMALE"):
+    print("Synthesizing speech...")
+
+    request_payload = {
+        "input": {"text": text},
+        "voice": {
+            "languageCode": language_code,
+            "ssmlGender": ssml_gender,
+        },
+        "audioConfig": {
+            "audioEncoding": "LINEAR16",
+            "sampleRateHertz": 16000,
+            "speakingRate": 1.0,  
+            "pitch": 3.0  
+        },
+    }
+
+    try:
+        response = client.text().synthesize(body=request_payload).execute()
+
+        if "audioContent" in response:
+            audio_content = base64.b64decode(response["audioContent"])
+
+            with wave.open(output_file, "wb") as wf:
+                wf.setnchannels(1) 
+                wf.setsampwidth(2) 
+                wf.setframerate(16000)
+                wf.writeframes(audio_content)
+            print(f"Audio saved to: {output_file}")
+        else:
+            print("No audio content received.")
+
+    except googleapiclient.errors.HttpError as err:
+        print(f"Error during synthesis: {err}")
 
 def play_audio(file_path):
     print("Playing audio...")
-    playsound(file_path)
+    try:
+        wf = wave.open(file_path, "rb")
+    except FileNotFoundError:
+        print(f"Error: File {file_path} not found.")
+        return
+    except wave.Error as e:
+        print(f"Error reading audio file: {e}")
+        return
 
-if __name__ == "__main__":
+    chunk = 1024
+    p = pyaudio.PyAudio()
+
+    try:
+        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                        channels=wf.getnchannels(),
+                        rate=wf.getframerate(),
+                        output=True)
+
+        data = wf.readframes(chunk)
+        while data:
+            stream.write(data)
+            data = wf.readframes(chunk)
+
+        stream.stop_stream()
+        stream.close()
+        print("Audio playback finished.")
+    except Exception as e:
+        print(f"Error during audio playback: {e}")
+    finally:
+        wf.close()
+        p.terminate()
+
+def text_to_speech(text):
+    tts_client = get_text_to_speech_client()
+    synthesize_speech(text, tts_client)
+    play_audio(OUTPUT_FILE)
+
+
+
+def audio_record():
     speech_client = get_speech_client()
     audio_file = record_audio_with_silence()
     transcribed_text = transcribe_audio_google(audio_file, speech_client)
-
-    if transcribed_text:
-        text_to_speech(transcribed_text, TTS_OUTPUT_FILE)
+    return transcribed_text
