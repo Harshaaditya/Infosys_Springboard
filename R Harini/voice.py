@@ -2,7 +2,7 @@ import google.generativeai as Gen_Ai
 import speech_recognition as sr
 import pyttsx3
 
-api_key = "AIzaSyAeooMuSJF8RuZJDawtRGYYp-DzdTJxaZ0"
+api_key = "Google-Api"
 
 Gen_Ai.configure(api_key=api_key)
 
