@@ -1,7 +1,6 @@
 import pyaudio
 import wave
 import numpy as np
-import whisper
 from faster_whisper import WhisperModel
 import time
 
@@ -66,3 +65,8 @@ def transcribe_audio(file_path):
     print(f"{transcription}")
     # return result["text"]
     return transcription
+
+if __name__ == "__main__":
+    audio_file = "./temp_recording.wav"
+    transcription = transcribe_audio(audio_file)
+    print(f"Transcription: {transcription}")
