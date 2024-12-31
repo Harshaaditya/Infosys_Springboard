@@ -79,8 +79,10 @@ chat_session = model.start_chat(
     ]
 )
 
-def generate_response(user_input):
+def generate_response(user_input, summary=None):
     try:
+        if summary:
+            user_input = f"User_input: {user_input}\n\nSummary:\n{summary}"
         response = chat_session.send_message(user_input)
         return response.text
     except Exception as e:

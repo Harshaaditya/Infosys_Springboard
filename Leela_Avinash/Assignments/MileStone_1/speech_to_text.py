@@ -2,6 +2,7 @@ import pyaudio
 import wave
 import numpy as np
 import whisper
+from faster_whisper import WhisperModel
 import time
 
 RATE = 16000
@@ -9,7 +10,7 @@ CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 SILENCE_THRESHOLD = 500 
-SILENCE_DURATION = 2 
+SILENCE_DURATION = 4
 
 def is_silent(data_chunk):
     return np.max(np.abs(data_chunk)) < SILENCE_THRESHOLD
@@ -55,7 +56,13 @@ def record_audio():
     return filename
 
 def transcribe_audio(file_path):
-    model = whisper.load_model("small")
+    model_Size = "base"
+    asr_model = WhisperModel(model_Size, device="cpu", compute_type="float32")
+    result = asr_model.transcribe(file_path)
+    # model = whisper.load_model("small")
     print("Transcribing...")
-    result = model.transcribe(file_path)
-    return result["text"]
+    segments, info = asr_model.transcribe(file_path)
+    transcription = " ".join([seg.text for seg in segments])
+    print(f"{transcription}")
+    # return result["text"]
+    return transcription
