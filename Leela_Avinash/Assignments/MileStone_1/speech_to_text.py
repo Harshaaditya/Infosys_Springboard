@@ -62,7 +62,7 @@ def transcribe_audio(file_path):
     print("Transcribing...")
     segments, info = asr_model.transcribe(file_path)
     transcription = " ".join([seg.text for seg in segments])
-    print(f"{transcription}")
+    # print(f"{transcription}")
     # return result["text"]
     return transcription
 

@@ -1,6 +1,7 @@
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os
+import time
 
 load_dotenv()
 api_key = os.getenv("GOOGLE_GEMINI_API")
@@ -156,5 +157,7 @@ def Analyze_text(user_input):
         return f"Error generating response: {e}"
     
 if __name__ == "__main__":
-    user_input = "I'm not sure if this is the right option for me. Can you suggest something else?"
+    user_input = "I’m glad you finally showed up, but it’s frustrating that you’re always late."
+    start = time.time()
     print(Analyze_text(user_input))
+    print(f"Time taken: {time.time() - start} seconds")
