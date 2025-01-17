@@ -1,0 +1,11 @@
+deal_id,customer_id,deal_stage,product,proposed_terms,negotiation_notes,deal_value,closing_date
+1,1,Interest,Product A,10% discount,Awaiting confirmation,5000,2025-01-15
+2,2,Proposal,Product B,Extended warranty,Customer wants flexibility,12000,2025-01-20
+3,3,Negotiation,Product C,Free shipping,Discussing shipping costs,8000,2025-01-25
+4,4,Closed-Won,Product A,Custom feature,Terms accepted,15000,2025-01-30
+5,5,Interest,Product D,Return policy,Considering competitors,4000,2025-02-01
+6,6,Proposal,Product E,Premium access,Upselling premium features,20000,2025-02-05
+7,7,Closed-Lost,Product F,Flexible billing,Customer not interested,10000,2025-02-10
+8,8,Negotiation,Product G,Discounted pricing,Price concern unresolved,6000,2025-02-15
+9,9,Interest,Product H,Loyalty perks,Exploring options,3000,2025-02-20
+10,10,Closed-Won,Product I,Early delivery,Satisfied with terms,25000,2025-02-25

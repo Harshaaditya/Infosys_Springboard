@@ -1,0 +1,11 @@
+interaction_id,customer_id,date,channel,query,sentiment,tone,intent,outcome
+1,1,2025-01-10,Call,Need pricing details,Neutral,Informative,Inquiry,Pending
+2,2,2025-01-09,Email,Feedback on product,Positive,Friendly,Feedback,Resolved
+3,3,2025-01-08,Meeting,Customization options,Neutral,Professional,Inquiry,Pending
+4,4,2025-01-07,Call,Demo scheduling,Neutral,Professional,Request,Scheduled
+5,5,2025-01-06,Email,Premium package interest,Positive,Excited,Purchase,Closed-Won
+6,6,2025-01-05,Call,Follow-up request,Negative,Frustrated,Follow-up,Pending
+7,7,2025-01-04,Meeting,Billing concern,Negative,Concerned,Complaint,Escalated
+8,8,2025-01-03,Email,New feature inquiry,Neutral,Inquisitive,Inquiry,Pending
+9,9,2025-01-02,Call,Switching competitor,Negative,Disappointed,Switching,Pending
+10,10,2025-01-01,Email,Loyalty rewards,Positive,Friendly,Upgrade,Closed-Won

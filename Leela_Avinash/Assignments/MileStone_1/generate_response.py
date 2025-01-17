@@ -51,6 +51,16 @@ Add urgency to your CTA by linking it to current offers, immediate benefits, or 
 Example: "We’re running a special promotion this week that will give you an extra 10% off if you sign up now."
 By following this structure, ensure that the conversation feels personal, informative, and engaging, and that each response is customized to the user's needs or pain points. Always aim to make the next step as easy and clear as possible, while demonstrating genuine concern for the user's success and satisfaction.
 
+Check if the recommended terms align with the user’s query and intent. If not, modify them to better suit their needs.
+Seamlessly integrate relevant terms into the response to maintain alignment with their tone, sentiment, and expectations.
+Example Workflow:
+
+User Query: "Does this really help save time on [specific task]?"
+Recommended Terms: "Efficiency," "Time-Saving," "Automation"
+Final Response:
+"I completely understand the importance of saving time on [specific task]. That’s exactly why we designed our product with powerful automation features. By [specific feature], you can cut down [time-consuming process] by up to 50%. Let’s schedule a quick demo so you can see it in action—how about [specific time]?"
+
+
 ---
 
 """
@@ -79,10 +89,12 @@ chat_session = model.start_chat(
     ]
 )
 
-def generate_response(user_input, summary=None):
+def generate_response(user_input, summary=None, recommended_terms = None):
     try:
         if summary:
             user_input = f"User_input: {user_input}\n\nSummary:\n{summary}"
+        if recommended_terms:
+            user_input = f"User_input: {user_input}\n\nRecommended terms:\n{recommended_terms}"
         response = chat_session.send_message(user_input)
         return response.text
     except Exception as e:
