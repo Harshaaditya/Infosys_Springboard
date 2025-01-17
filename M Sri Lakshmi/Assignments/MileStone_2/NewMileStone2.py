@@ -17,7 +17,7 @@ model = whisper.load_model("base")
 engine = pyttsx3.init()
 
 # Configure Gemini
-genai.configure(api_key="AIzaSyCzD52OTTB-okwtKMvC_ioIiR6a9pYiAmc")
+genai.configure(api_key=gemini_api_key)
 gemini_model = genai.GenerativeModel("gemini-2.0-flash-exp")
 
 # Audio recording settings
