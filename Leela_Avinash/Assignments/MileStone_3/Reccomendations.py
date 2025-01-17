@@ -11,7 +11,6 @@ interactions = pd.read_csv('D:/Codes/Deep_Learning/Infosys_internship/Real-Time-
 deals = pd.read_csv('D:/Codes/Deep_Learning/Infosys_internship/Real-Time-AI-Sales-Intelligence-and-Sentiment-Driven-Deal-Negotiation-Assistant/Assignments/MileStone_3/mnt/data/deals.csv')
 recommendations = pd.read_csv('D:/Codes/Deep_Learning/Infosys_internship/Real-Time-AI-Sales-Intelligence-and-Sentiment-Driven-Deal-Negotiation-Assistant/Assignments/MileStone_3/mnt/data/recommendations.csv')
 
-# Configure model generation settings
 generation_config = {
     "temperature": 1,
     "top_p": 0.95,
