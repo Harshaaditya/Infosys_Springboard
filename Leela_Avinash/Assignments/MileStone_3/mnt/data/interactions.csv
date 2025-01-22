@@ -1,11 +1,20 @@
-interaction_id,customer_id,date,channel,query,sentiment,tone,intent,outcome
-1,1,2025-01-10,Call,Need pricing details,Neutral,Informative,Inquiry,Pending
-2,2,2025-01-09,Email,Feedback on product,Positive,Friendly,Feedback,Resolved
-3,3,2025-01-08,Meeting,Customization options,Neutral,Professional,Inquiry,Pending
-4,4,2025-01-07,Call,Demo scheduling,Neutral,Professional,Request,Scheduled
-5,5,2025-01-06,Email,Premium package interest,Positive,Excited,Purchase,Closed-Won
-6,6,2025-01-05,Call,Follow-up request,Negative,Frustrated,Follow-up,Pending
-7,7,2025-01-04,Meeting,Billing concern,Negative,Concerned,Complaint,Escalated
-8,8,2025-01-03,Email,New feature inquiry,Neutral,Inquisitive,Inquiry,Pending
-9,9,2025-01-02,Call,Switching competitor,Negative,Disappointed,Switching,Pending
-10,10,2025-01-01,Email,Loyalty rewards,Positive,Friendly,Upgrade,Closed-Won
+interaction_id,customer_id,date,channel,query,sentiment,tone,intent
+1,1,2025-01-10,Call,Need pricing details,Neutral,Informative,Inquiry
+2,2,2025-01-09,Email,Feedback on product,Positive,Friendly,Feedback
+3,3,2025-01-08,Meeting,Customization options,Neutral,Professional,Inquiry
+4,4,2025-01-07,Call,Demo scheduling,Neutral,Professional,Request
+5,5,2025-01-06,Email,Premium package interest,Positive,Excited,Purchase
+6,6,2025-01-05,Call,Follow-up request,Negative,Frustrated,Follow-up
+7,7,2025-01-04,Meeting,Billing concern,Negative,Concerned,Complaint
+8,8,2025-01-03,Email,New feature inquiry,Neutral,Inquisitive,Inquiry
+9,9,2025-01-02,Call,Switching competitor,Negative,Disappointed,Switching
+10,10,2025-01-01,Email,Loyalty rewards,Positive,Friendly,Upgrade
+"11","1","2025-01-21 19:58:48.714686","call"," Hello, hello, hello, my testing one to team.  This is a big video.  If you have not taken any video, you will not see another one, so take two.","Neutral","['Informative']","Providing information"
+"12","1","2025-01-21 21:06:54.074809","call"," Hello, hello, hello, my testing on to team.  Thank you very much for your time.","Neutral","['Informative', 'Neutral']","Providing information"
+"13","1","2025-01-21 21:59:01.306226","call"," Hello, hello, my testing one, two, three.","Neutral","['Testing']","Testing audio"
+"13","1","2025-01-21 21:59:22.669833","call"," You","Neutral","['Calm']","Undefined"
+"13","1","2025-01-21 21:59:45.436812","call"," Thanks it, thanks it.","Neutral","['Flat']","Giving a command"
+"14","1","2025-01-21 22:00:52.857712","call"," Hello, hello, I'm testing one, do you?","Neutral","['Testing']","Testing audio"
+"15","1","2025-01-21 22:05:12.862135","call","Hello, hello, hello.","Neutral","['Testing', 'Calm']","Testing equipment"
+"16","1","2025-01-21 22:09:24.555906","call","Hello, hello, hello, hello, my testing window too.","Neutral","['Calm', 'Testing']","Testing audio equipment"
+"17","1","2025-01-21 22:09:45.371808","call","I don't need your product. Bye.","Negative","['Dismissive', 'Annoyed']","Expressing rejection"

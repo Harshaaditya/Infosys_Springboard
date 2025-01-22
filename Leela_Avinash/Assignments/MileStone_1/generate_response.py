@@ -89,10 +89,10 @@ chat_session = model.start_chat(
     ]
 )
 
-def generate_response(user_input, summary=None, recommended_terms = None):
+def generate_response(user_input, sentiment, intent, tone, recommended_terms = None):
     try:
-        if summary:
-            user_input = f"User_input: {user_input}\n\nSummary:\n{summary}"
+        if sentiment:
+            user_input = f"User_input: {user_input}\n\nSentiment: {sentiment}\nIntent: {intent}\nTone: {tone}"
         if recommended_terms:
             user_input = f"User_input: {user_input}\n\nRecommended terms:\n{recommended_terms}"
         response = chat_session.send_message(user_input)

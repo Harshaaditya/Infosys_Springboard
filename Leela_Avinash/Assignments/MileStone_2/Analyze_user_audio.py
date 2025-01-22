@@ -2,6 +2,8 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 import time
+import json
+import re
 
 load_dotenv()
 api_key = os.getenv("GOOGLE_GEMINI_API")
@@ -140,6 +142,31 @@ model = genai.GenerativeModel(
     system_instruction=AUDIO_ANALYSIS_PROMPT,
 )
 
+import re
+
+def parse_analysis_response(response_text: str) -> dict:
+    """
+    Parse the AI response into a structured dictionary.
+
+    Args:
+        response_text (str): The raw response text.
+
+    Returns:
+        dict: Parsed result with sentiment, tone, and intent.
+    """
+    pattern = r"- Sentiment:\s*(?P<sentiment>[^\n]+)\n- Tone:\s*(?P<tone>[^\n]+)\n- Intent:\s*(?P<intent>[^\n]+)"
+    
+    match = re.search(pattern, response_text, re.IGNORECASE)
+
+    if match:
+        return {
+            "sentiment": match.group("sentiment").strip(),
+            "tone": [t.strip() for t in match.group("tone").split(",")],
+            "intent": match.group("intent").strip()
+        }
+    else:
+        raise ValueError(f"Failed to parse AI response. Response received: \n{response_text}")
+
 def analyze_audio(audio_path: str) -> str:
     """
     Analyze sentiment, tone, and intent from an audio file.
@@ -170,7 +197,8 @@ def analyze_audio(audio_path: str) -> str:
         )
 
         response = chat_session.send_message("Analyze the tone, sentiment, and intent from the audio.")
-        return response.text
+        analysis_result = parse_analysis_response(response.text)
+        return analysis_result
 
     except Exception as e:
         raise RuntimeError(f"An error occurred: {e}")
@@ -180,8 +208,16 @@ if __name__ == "__main__":
     try:
         start = time.time()
         result = analyze_audio(audio_path)
+        sentiment = result["sentiment"]
+        tone = result["tone"]
+        intent = result["intent"]
+
         print("\n### Analysis Result ###")
-        print(result)
+        print(json.dumps(result, indent=2)) 
+        print(f"\nSentiment: {sentiment}")
+        print(f"Tone: {tone}")
+        print(f"Intent: {intent}")
         print(f"\nAnalysis completed in {time.time() - start:.2f} seconds.")
+
     except Exception as e:
         print(e)
